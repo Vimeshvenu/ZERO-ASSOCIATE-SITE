@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Gallery — ZERO Associate</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="ZERO Associate — Trading · Contracting · Maintenance (Qatar)."/>
+<!-- B12 verification placeholder: replace with the value B12 gives you -->
+<meta name="b12-verification" content="b12=abc123" />
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/dark.css" id="dark-css" disabled>
+<script defer src="assets/script.js"></script>
+
+  <style>
+    /* small gallery-specific */
+    .gallery-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
+    .gallery-grid img{width:100%;height:160px;object-fit:cover;border-radius:8px;cursor:pointer}
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity .2s}
+    .lightbox.show{opacity:1;pointer-events:auto}
+    .lightbox img{max-width:95%;max-height:85%}
+    .lb-close{position:absolute;top:22px;right:22px;color:#fff;font-size:28px;cursor:pointer}
+  </style>
+</head>
+<body>
+<header class="site-header small">
+  <div class="container header-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.svg" alt="logo" class="logo"><div class="brand-text"><strong>ZERO Associate</strong></div></a>
+    <nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a class="active" href="gallery.html">Gallery</a><a href="contact.html">Contact</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1>Our Work Gallery</h1>
+  <div class="gallery-grid" id="gallery">
+    <!-- Replace these src with your real images in /assets/ -->
+    <img src="assets/project1.jpg" alt="project1" data-index="0">
+    <img src="assets/project2.jpg" alt="project2" data-index="1">
+    <img src="assets/project3.jpg" alt="project3" data-index="2">
+    <img src="assets/project4.jpg" alt="project4" data-index="3">
+    <img src="assets/project5.jpg" alt="project5" data-index="4">
+    <img src="assets/project6.jpg" alt="project6" data-index="5">
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button class="lb-close" aria-label="Close" onclick="closeLB()">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+(function(){
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('#gallery img'));
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var current = 0;
+  imgs.forEach(function(img,i){ img.addEventListener('click', function(){ openLB(i); }); });
+  function openLB(i){ current = i; lbImg.src = imgs[i].src; lb.classList.add('show'); lb.setAttribute('aria-hidden','false'); }
+  window.closeLB = function(){ lb.classList.remove('show'); lb.setAttribute('aria-hidden','true'); }
+  var startX = 0;
+  lb.addEventListener('touchstart', function(e){ startX = e.changedTouches[0].clientX; });
+  lb.addEventListener('touchend', function(e){
+    var endX = e.changedTouches[0].clientX;
+    var diff = endX - startX;
+    if(Math.abs(diff) > 40){
+      if(diff < 0) nextImage(); else prevImage();
+    }
+  });
+  function nextImage(){ current = (current+1) % imgs.length; lbImg.src = imgs[current].src; }
+  function prevImage(){ current = (current-1 + imgs.length) % imgs.length; lbImg.src = imgs[current].src; }
+  document.addEventListener('keydown', function(e){ if(e.key==='ArrowRight') nextImage(); if(e.key==='ArrowLeft') prevImage(); if(e.key==='Escape') closeLB(); });
+})();
+</script>
+
+<footer class="site-footer container">Professional Services — ZERO Associate</footer>
+</body>
+</html>
