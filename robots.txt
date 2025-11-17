@@ -1,1 +1,0 @@
-User-agent: *\nAllow: /\nSitemap: https://zeroassociate.com/sitemap.xml\n
