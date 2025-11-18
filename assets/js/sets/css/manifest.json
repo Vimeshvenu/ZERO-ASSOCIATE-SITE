@@ -1,0 +1,11 @@
+{
+  "name": "ZERO Associate",
+  "short_name": "ZERO",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6A1B9A",
+  "icons": [
+    { "src": "assets/images/logo.png", "sizes": "192x192", "type": "image/png" }
+  ]
+}
