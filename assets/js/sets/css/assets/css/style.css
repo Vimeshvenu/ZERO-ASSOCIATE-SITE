@@ -1,0 +1,108 @@
+/* assets/css/style.css — upgraded */
+:root{
+  --primary: #6A1B9A;
+  --accent: #B370FF;
+  --bg: #ffffff;
+  --card: #f7f7f8;
+  --text: #111;
+  --muted: #666;
+  --radius: 10px;
+  --shadow-sm: 0 6px 18px rgba(11,11,11,0.06);
+  --container: 1200px;
+  --transition: 0.28s ease;
+}
+
+/* Dark mode via class or system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-mode) {
+    --bg: #0f0f11;
+    --card: #161617;
+    --text: #f3f3f3;
+    --muted: #bfbfbf;
+  }
+}
+body.dark-mode { --bg: #0f0f11; --card:#161617; --text:#f3f3f3; --muted:#bfbfbf; }
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition: background var(--transition), color var(--transition);
+}
+
+.container{width:92%;max-width:var(--container);margin:0 auto}
+
+/* Utility */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* Header */
+.sticky-header{
+  position:sticky;top:0;z-index:90;
+  background:rgba(255,255,255,0.88);backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(0,0,0,0.04);
+}
+.nav-container{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.logo img{display:block;max-width:100%;height:auto}
+.nav-menu ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+.nav-menu a{text-decoration:none;color:var(--muted);padding:6px 8px;border-radius:6px}
+.nav-menu a.active,.nav-menu a:hover{color:var(--primary)}
+.header-actions{display:flex;align-items:center;gap:10px}
+.btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600}
+.btn-outline{display:inline-block;border:1px solid rgba(0,0,0,0.06);color:var(--text);padding:10px 14px;border-radius:8px;text-decoration:none}
+.desktop-only{display:inline-block}
+.hamburger{display:none;background:none;border:0;padding:8px;cursor:pointer}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px}
+
+/* Hero */
+.hero-section{padding:48px 0;position:relative}
+.hero-content{display:grid;grid-template-columns:1fr 480px;gap:28px;align-items:center}
+.hero-copy h1{font-size:2rem;margin:0}
+.subheadline{color:var(--muted);margin-top:6px}
+.hero-buttons{margin-top:12px;display:flex;gap:10px}
+
+/* Layout & cards */
+.section-padding{padding:48px 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.service-card{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow-sm)}
+
+/* Animations */
+.fade-in,.slide-up{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+.visible{opacity:1;transform:none}
+
+/* Gallery */
+.masonry-grid{column-count:3;column-gap:20px}
+.gallery-item{break-inside:avoid;margin-bottom:16px;border-radius:8px;overflow:hidden}
+.gallery-item img{width:100%;height:auto;display:block}
+
+/* Lightbox */
+#lightbox.lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:2200}
+#lightbox.lightbox.active{display:flex}
+#lightbox.lightbox img{max-width:94%;max-height:90%;border-radius:6px}
+
+/* Footer */
+.footer-section{padding:28px 0;border-top:1px solid rgba(0,0,0,0.04)}
+.footer-content{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.footer-bottom{text-align:center;color:var(--muted);margin-top:12px}
+
+/* Small */
+.mt-4{margin-top:1rem}
+.text-center{text-align:center}
+
+/* Responsive */
+@media (max-width:1000px){
+  .hero-content{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:680px){
+  .nav-menu{display:none}
+  .hamburger{display:block}
+  .desktop-only{display:none}
+  .masonry-grid{column-count:1}
+  .grid-2{grid-template-columns:1fr}
+}
