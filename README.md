@@ -1,1 +1,0 @@
-Upload this zip to Netlify, Cloudflare Pages, GitHub Pages or your host. Replace contact info in files as needed.
